@@ -1,0 +1,35 @@
+name: Publish @abm/cn to JSR
+
+on:
+  push:
+    paths:
+      - 'cn/**'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up Deno
+      uses: denoland/setup-deno@v2
+      with:
+        deno-version: v2.x
+
+    - name: Run Deno Lint
+      run: deno lint
+      working-directory: cn
+
+    - name: Run Deno Test
+      run: deno test
+      working-directory: cn
+
+    - name: Publish to JSR
+      run: deno publish
+      working-directory: cn

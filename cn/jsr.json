@@ -1,0 +1,6 @@
+{
+    "name": "@abm/cn",
+    "version": "1.0.0",
+    "exports": "./mod.ts",
+    "license": "MIT"
+}
